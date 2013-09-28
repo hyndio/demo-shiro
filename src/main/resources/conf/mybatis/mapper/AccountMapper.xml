@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="h.demo.shiro.mapper.AccountMapper">
+
+	<cache />
+
+	<select id="getAccountByUsername" parameterType="string" resultType="Account">
+		SELECT * FROM ACCOUNT T WHERE T.USERNAME = #{username}
+	</select>
+
+	<select id="getAccountByUsernameAndPassword" parameterType="Account" resultType="Account">
+		SELECT * FROM ACCOUNT T WHERE T.USERNAME = #{username} AND T.PASSWORD = #{password}
+	</select>
+	
+</mapper>

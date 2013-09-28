@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="h.demo.shiro.mapper.RoleMapper">
+
+	<cache />
+
+	<select id="getRoleByAccount" parameterType="string" resultType="Role">
+		SELECT B.* 
+		FROM ACCOUNT_ROLE A 
+		LEFT JOIN ROLE B ON A.ROLENAME = B.ROLENAME
+		WHERE A.USERNAME = #{username}
+	</select>
+	
+	<select id="getRolePerms" resultType="java.util.HashMap">
+		SELECT A.ROLENAME, B.URL 
+		FROM ROLE_PERMISSION A
+		INNER JOIN PERMISSION B ON A.TOKEN = B.TOKEN
+	</select>
+	
+</mapper>
